@@ -1,17 +1,15 @@
 module Main exposing (..)
 
-import Date exposing (Date)
-import UUID exposing (UUID)
+import Update exposing (update)
+import View exposing (view)
 
-type alias Line =
-  { text : String
-  , id : UUID
-  , created : Date
-  , updated : Date
-  , authors : List Author
+import Browser
+
+main = Browser.sandbox
+  { init = 1
+  , update = update
+  , view = view
   }
 
-type alias Author =
-  { name : String
-  , id : UUID
-  }
+undefined : () -> a
+undefined _ = Debug.todo "undefined!"
