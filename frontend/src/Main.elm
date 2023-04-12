@@ -12,6 +12,7 @@ import Html exposing (Html)
 --   , view = view
 --   }
 
+main : Html msg
 main =
   Html.text "ok"
 
