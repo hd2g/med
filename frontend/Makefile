@@ -9,11 +9,15 @@ SRC := ./src/Main.elm
 
 all: build
 
-build:
+build: build-elm build-css
+
+build-css:
+	npx tailwindcss -i static/style.css -o dist/style.css
+
+build-elm:
 	mkdir -p $(OUTPUT_DIR)
 	cp $(INDEX_HTML) $(OUTPUT_DIR)
 	elm make $(SRC) --output=$(OUTPUT)
-	npx tailwindcss -i static/style.css -o dist/style.css
 
 dev:
-	elm-live $(SRC) --hot --open -- --output=$(OUTPUT_DIR)/main.js
+	elm-live $(SRC) --hot -- --output=$(OUTPUT_DIR)/main.js
