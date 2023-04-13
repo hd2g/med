@@ -1,35 +1,36 @@
 module Main exposing (..)
 
-import Css
-import Css.Global
-import Html.Styled as Html
-import Html.Styled.Attributes as Attr
-import Tailwind.Breakpoints as Breakpoints
-import Tailwind.Utilities as Tw
-import Tailwind.Theme as Tw
-import Html as H
-import Html.Attributes exposing (classList)
+import Browser
+import Html exposing (Html, div, button, text)
+import Html.Events exposing (onClick)
 
-main : H.Html msg
+main : Program () Model Msg
 main =
-  H.text "ok"
-  -- layout []
-  --   [ title [] []
-  --   , page [] [ H.text "ok" ]
-  --   ]
+  Browser.sandbox
+    { init = 0
+    , update = update
+    , view = view
+    }
 
-undefined : () -> a
-undefined _ = Debug.todo "undefined..."
+type alias Model = Int
 
-type alias HtmlElement msg = List (H.Attribute msg) -> List (H.Html msg) -> H.Html msg
+type Msg
+  = Increment
+  | Decrement
+  | Reset
 
-layout : HtmlElement msg
-layout moreAttrs moreTags =
-  Html.toUnstyled <|
-    Html.div [ Attr.css [] ] []
+update : Msg -> Model -> Model
+update msg model =
+  case msg of
+    Increment -> model + 1
+    Decrement -> model - 1
+    Reset -> 0
 
-title : HtmlElement msg
-title = undefined ()
-
-page : HtmlElement msg
-page = undefined ()
+view : Model -> Html Msg
+view model =
+  div []
+    [ button [ onClick Increment ] [ text "+" ]
+    , div [] [ text (String.fromInt model) ]
+    , button [ onClick Decrement ] [ text "-" ]
+    , button [ onClick Reset ] [ text "Reset" ]
+    ]

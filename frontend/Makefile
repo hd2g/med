@@ -20,4 +20,4 @@ build-elm:
 	elm make $(SRC) --output=$(OUTPUT)
 
 dev:
-	elm-live $(SRC) --hot -- --output=$(OUTPUT_DIR)/main.js
+	elm-live $(SRC) --hot -- --output=$(OUTPUT_DIR)/app.js
