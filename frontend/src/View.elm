@@ -9,15 +9,20 @@ import Model exposing (Line)
 type alias HtmlElement msg = List (Attribute msg) -> List (Html msg) -> Html msg
 
 layout : HtmlElement msg
-layout = undefined ()
+layout attrs tags =
+  div attrs tags
 
 brief : Line -> HtmlElement msg
 brief line attrs tags =
-  div [] []
+  div []
+    [ h3 []
+        [ text line.text ]
+    ]
 
 paper : Model -> HtmlElement msg
 paper lines attrs tags =
-  div [] []
+  div []
+    []
 
 view : Model -> Html Msg
 view model =
